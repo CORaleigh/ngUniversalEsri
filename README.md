@@ -1,6 +1,18 @@
-<p align="center">
-  <img src="https://cloud.githubusercontent.com/assets/1016365/10639063/138338bc-7806-11e5-8057-d34c75f3cafc.png" alt="Universal Angular" height="320"/>
-</p>
+# Notes for COR IT
+This is an example for using Angular Universal with arcgis api 4.5 using angular-esri-loader to load a map. 
+* There are two separate projects here, inside the cli folder (broken) and inside the custom-webpack folder (works)
+* View the readme inside custom-webpack, basically, cd custom-webpack --> npm i --> npm run start
+* main.server.ts starts the server on localhost:8000 and also listens for @RW911 tweets and reverse geocodes them.
+
+# Todo 
+* get node server to capture twitter stream from @RW911, parse each tweet's address and geocode *Complete*
+* get client map and node server to play nice - *Complete*
+* store parsed tweets in a behavior subject and subscribe to them in esri.component.ts to display points on map
+* store coordinates in mongo or redis or similar
+* add map to a route vs. default homepage selector
+* leverage for F&O form replacement or reusable generic Cityworks SR webform
+* Test what is really client side vs. server side
+* Deploy on server i.e. systemd, mongod
 
 # Angular Universal Starter [![Universal Angular](https://img.shields.io/badge/universal-angular2-brightgreen.svg?style=flat)](https://github.com/angular/universal)
 > Server-Side Rendering for Angular
