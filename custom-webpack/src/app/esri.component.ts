@@ -9,6 +9,12 @@ import {
   // also import the "angular2-esri-loader" to be able to load JSAPI modules
   import { EsriLoaderService } from 'angular-esri-loader';
 import { Inject } from '@angular/core';
+
+// CHF 10/18/2017 needed for error on window, document etc. 
+// https://github.com/angular/universal see 'gotchas' 
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+
   
   @Component({
     selector: 'esri',
@@ -34,12 +40,14 @@ import { Inject } from '@angular/core';
     constructor(
       public route: ActivatedRoute,
       private esriLoader: EsriLoaderService,
+      @Inject(PLATFORM_ID) private platformId: Object
     ) { }
   
     public ngOnInit() {
 
+      if (isPlatformBrowser(this.platformId)) {
         // Client only code.
-              // only load the ArcGIS API for JavaScript when this component is loaded
+        // only load the ArcGIS API for JavaScript when this component is loaded
       return this.esriLoader.load({
         // use a specific version of the JSAPI
         url: 'https://js.arcgis.com/4.3/'
@@ -84,5 +92,11 @@ import { Inject } from '@angular/core';
       });
      
 
+     }
+     if (isPlatformServer(this.platformId)) {
+       // Server only code.
+       // get the tweet coords?
+     }
+      
     }
   }
