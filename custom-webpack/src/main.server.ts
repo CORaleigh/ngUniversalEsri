@@ -19,9 +19,6 @@ const app = express();
 const port = 8000;
 const baseUrl = `http://localhost:${port}`;
 
-// CHF global for coords?
-var coords = "";
-
 app.engine('html', ngExpressEngine({
   bootstrap: ServerAppModule
 }));
@@ -92,7 +89,7 @@ http.get({
         // Data reception is done, do whatever withN it!
          var parsed = JSON.parse(body);
         // console.log('parsed full', parsed);
-        this.ccoords = parsed.candidates[0].location;
+        this.coords = parsed.candidates[0].location;
         console.log('parsed = ', parsed.candidates[0].location);
 
       });
